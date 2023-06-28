@@ -1,0 +1,27 @@
+// .page-content {
+//     min-height: 100vh;
+//     width: auto;
+// }
+
+#welcome {
+    min-height: 50vh;
+    margin-bottom: 15vh;
+}
+
+nav {
+    min-height: 10vh;
+}
+
+#hello {
+    min-height: 50vh;
+    display: grid;
+    place-items: center;
+    align-content: end;
+}
+
+#i-am {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    align-content: center;
+}
