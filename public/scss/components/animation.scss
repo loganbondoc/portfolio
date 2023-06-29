@@ -1,3 +1,21 @@
-.hello {
-    animation: fadeIn 5s;
+// animation triggered on open
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(100%);}
+    100% { opacity: 1; transform: translateY(0%);}
+}
+
+#hello {
+    .blue-txt, h1 {
+        animation: fadeIn 1s;
+    }
+
+    h1 {
+        animation-delay: 100ms;
+    }
+}
+
+#line {
+    animation: fadeIn 1s;
+    animation-delay: 200ms;
 }
