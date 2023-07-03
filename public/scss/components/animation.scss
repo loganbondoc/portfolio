@@ -1,8 +1,8 @@
 // animation triggered on open
 
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(100%);}
-    100% { opacity: 1; transform: translateY(0%);}
+    0% { opacity: 0; transform: translateY(100%); filter: blur(5px);}
+    100% { opacity: 1; transform: translateY(0%); filter: blur(0);}
 }
 
 #hello {
@@ -15,7 +15,33 @@
     }
 }
 
-#line {
-    animation: fadeIn 1s;
-    animation-delay: 200ms;
-}
+// #line {
+//     animation: fadeIn 1s;
+//     animation-delay: 200ms;
+// }
+
+// transitions
+
+// .hidden {
+//     opacity: 0;
+//     transform: translateY(100%);
+//     filter: blur(5px);
+//     transition: all 1s;
+// }
+
+// .show {
+//     opacity: 1;
+//     transform: translateY(0%);
+//     filter: blur(0);
+// }
+
+
+// #hello {
+//     .blue-txt {
+//         transition-delay: 100ms;
+//     }
+
+//     h1 {
+//         transition-delay: 400ms;
+//     }
+// }

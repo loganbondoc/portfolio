@@ -1,11 +1,11 @@
-// .page-content {
-//     min-height: 100vh;
-//     width: auto;
-// }
+.page-content {
+    min-height: 100vh;
+    width: auto;
+}
 
 #welcome {
     min-height: 50vh;
-    margin-bottom: 15vh;
+    // margin-bottom: 15vh;
 }
 
 nav {
@@ -19,9 +19,33 @@ nav {
     align-content: end;
 }
 
+
+#i-am-spacer {
+    min-height: 100vh;
+}
 #i-am {
     min-height: 100vh;
     display: grid;
-    place-items: center;
     align-content: center;
+
+    .i-am-container {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-content: center;
+        z-index: 1;
+
+        span {
+            display: grid;
+            place-items: center;
+        }
+    }
+}
+
+#line {
+    position: absolute;
+    top: 80vh;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
 }
