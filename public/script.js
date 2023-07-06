@@ -31,7 +31,7 @@ const DOMLineScene = new Director.Scene()
 
 DOMLineScene.fromTo(DOMCameraLine, {translateX: [DOMTranslateX/4, DOMTranslateX/2]}, { duration: 1, ease: 'easeOutQuint' }, 0.25)
 
-var DOMCamera = new Director.Camera(DOMLineWrapper, DOMLineScene)
+const DOMCamera = new Director.Camera(DOMLineWrapper, DOMLineScene)
 
 var update = () => {
 	DOMLineScene.setProgress(DOMCamera.progress)
@@ -49,12 +49,12 @@ const observer = new IntersectionObserver(entries => {
       if (entry.isIntersecting) {
         // If the "designer" div is intersecting with the viewport, change the display property of the "line" div to "fixed"
         line.style.position = 'fixed';
-		line.style.top = '12.5vh';
+		    line.style.top = '12.5vh';
         // line.style.transform = 'translateY(-50%)';
       } else {
         // If the "designer" div is not intersecting with the viewport, revert the display property of the "line" div to its default value
         line.style.position = 'absolute';
-		line.style.top = '80vh';
+		    line.style.top = '80vh';
         // line.style.transform = 'translateY(0)';
       }
     });
@@ -64,43 +64,44 @@ const observer = new IntersectionObserver(entries => {
 const iAmSection = document.getElementById('i-am');
 observer.observe(iAmSection);
 
-// const iAmText = document.getElementById('i-am-text');
+        // DOM Camera 2
+const iAmContainer = document.getElementById('i-am-container');
+const iAmText = document.getElementById('i-am-text');
 
-// const DOMIAmScene = new Director.Scene()
+const DOMIAmScene = new Director.Scene()
 
-// DOMIAmScene.fromTo(iAmText, {opacity: [0, 1]}, { duration: 1, ease: 'easeOutQuint' }, 0.25)
+DOMIAmScene.fromTo(iAmText, {opacity: [0, 1]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
 
-// var DOMCamera = new Director.Camera(iAmSection, iAmText)
+const DOMCamera2 = new Director.Camera(iAmSection, DOMIAmScene, {offset: 1000})
+// DOMCamera2.setScene(DOMIAmScene);
+// DOMCamera.resize();
 
-// var update = () => {
-// 	DOMIAmScene.setProgress(DOMCamera.progress)
-// 	window.requestAnimationFrame(update)
-// }
-// window.requestAnimationFrame(update)
+var update2 = () => {
+	DOMIAmScene.setProgress(DOMCamera2.progress)
+	window.requestAnimationFrame(update2)
+}
+window.requestAnimationFrame(update2)
+
+const observer2 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // If the "designer" div is intersecting with the viewport, change the display property of the "line" div to "fixed"
+        iAmText.style.position = 'fixed';
+		    iAmText.style.top = '12.5vh';
+        // line.style.transform = 'translateY(-50%)';
+      } else {
+        // If the "designer" div is not intersecting with the viewport, revert the display property of the "line" div to its default value
+        iAmText.style.position = 'absolute';
+        iAmText.style.top = '80vh';
+        // line.style.transform = 'translateY(0)';
+      }
+    });
+  });
+
+const designerSection = document.getElementById('designer');
+observer2.observe(designerSection);
 
 
-
-
-
-
-
-
-
-// console.log(hello.childElementCount);
-
-// const entryObserver = new IntersectionObserver((entries) => {
-//     entries.forEach((entry) => {
-//         console.log(entry)
-//         if (entry.isIntersecting) {
-//             entry.target.classList.add('show')
-//         } else {
-//             entry.target.classList.remove('show')
-//         }
-//     });
-// });
-
-// const hiddenElements = document.querySelectorAll('.hidden');
-// hiddenElements.forEach((el) => entryObserver.observe(el));
 
 // when its at 50%
     // other text slowly fade out
