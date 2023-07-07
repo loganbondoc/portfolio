@@ -41,8 +41,6 @@ window.requestAnimationFrame(update)
 
 
 // when scrolled past a certain point, change line position to be fixed
-// Create a new Intersection Observer instance
-
 const line = document.getElementById('line')
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -60,12 +58,13 @@ const observer = new IntersectionObserver(entries => {
     });
   });
 
-// Start observing the "i-am" section
-const iAmSection = document.getElementById('i-am');
-observer.observe(iAmSection);
+// observe to see if line should be visible
+const lineVisible = document.getElementById('line-visible');
+observer.observe(lineVisible);
 
-        // DOM Camera 2
+// DOM Camera 2
 const iAmContainer = document.getElementById('i-am-container');
+const iAmSection = document.getElementById('i-am');
 const iAmText = document.getElementById('i-am-text');
 
 const DOMIAmScene = new Director.Scene()
@@ -73,8 +72,6 @@ const DOMIAmScene = new Director.Scene()
 DOMIAmScene.fromTo(iAmText, {opacity: [0, 1]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
 
 const DOMCamera2 = new Director.Camera(iAmSection, DOMIAmScene, {offset: 1000})
-// DOMCamera2.setScene(DOMIAmScene);
-// DOMCamera.resize();
 
 var update2 = () => {
 	DOMIAmScene.setProgress(DOMCamera2.progress)
@@ -82,24 +79,25 @@ var update2 = () => {
 }
 window.requestAnimationFrame(update2)
 
+// when scrolled past a certain point, change "I am" position to be fixed
 const observer2 = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // If the "designer" div is intersecting with the viewport, change the display property of the "line" div to "fixed"
+        // If the "designer" div is intersecting with the viewport, change the display property of the "I am" div to "fixed"
         iAmText.style.position = 'fixed';
-		    iAmText.style.top = '12.5vh';
-        // line.style.transform = 'translateY(-50%)';
+        iAmText.style.left = '25vw';
+		    iAmText.style.top = '50vh';
       } else {
-        // If the "designer" div is not intersecting with the viewport, revert the display property of the "line" div to its default value
+        // If the "designer" div is not intersecting with the viewport, revert the display property of the "I am" div to its default value
         iAmText.style.position = 'absolute';
-        iAmText.style.top = '80vh';
-        // line.style.transform = 'translateY(0)';
+        iAmText.style.left = '25vw';
+        iAmText.style.top = '50vh';
       }
     });
   });
 
-const designerSection = document.getElementById('designer');
-observer2.observe(designerSection);
+const designerSpacer = document.getElementById('designer-spacer');
+observer2.observe(designerSpacer);
 
 
 
