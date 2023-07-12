@@ -48,12 +48,10 @@ const observer = new IntersectionObserver(entries => {
         // If the "designer" div is intersecting with the viewport, change the display property of the "line" div to "fixed"
         line.style.position = 'fixed';
 		    line.style.top = '12.5vh';
-        // line.style.transform = 'translateY(-50%)';
       } else {
         // If the "designer" div is not intersecting with the viewport, revert the display property of the "line" div to its default value
         line.style.position = 'absolute';
 		    line.style.top = '80vh';
-        // line.style.transform = 'translateY(0)';
       }
     });
   });
@@ -85,20 +83,73 @@ const observer2 = new IntersectionObserver(entries => {
       if (entry.isIntersecting) {
         // If the "designer" div is intersecting with the viewport, change the display property of the "I am" div to "fixed"
         iAmText.style.position = 'fixed';
-        iAmText.style.left = '25vw';
+        iAmText.style.left = '30vw';
 		    iAmText.style.top = '50vh';
       } else {
         // If the "designer" div is not intersecting with the viewport, revert the display property of the "I am" div to its default value
         iAmText.style.position = 'absolute';
-        iAmText.style.left = '25vw';
-        iAmText.style.top = '50vh';
+        iAmText.style.left = '30vw';
+        iAmText.style.top = '10vh';
       }
     });
   });
 
-const designerSpacer = document.getElementById('designer-spacer');
-observer2.observe(designerSpacer);
+const iAmVisible = document.getElementById('i-am-visible');
+observer2.observe(iAmVisible);
 
+const designerSvg = document.getElementById('designer-svg')
+
+// DOM Camera 3
+const designerSection = document.getElementById('designer');
+
+const DOMDesignerScene = new Director.Scene()
+
+DOMDesignerScene.fromTo(designerSvg, {opacity: [0, 1]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+
+const DOMCamera3 = new Director.Camera(designerSection, DOMDesignerScene, {offset: 1000})
+
+var update3 = () => {
+	DOMDesignerScene.setProgress(DOMCamera3.progress)
+	window.requestAnimationFrame(update3)
+}
+window.requestAnimationFrame(update3)
+
+// when scrolled past a certain point, change "I am" position to be fixed
+const observer3 = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // If the "designer" div is intersecting with the viewport, change the display property of the "I am" div to "fixed"
+      designerSvg.style.position = 'fixed';
+      designerSvg.style.left = '75vw';
+      designerSvg.style.top = '50vh';
+    } else {
+      // If the "designer" div is not intersecting with the viewport, revert the display property of the "I am" div to its default value
+      designerSvg.style.position = 'absolute';
+      designerSvg.style.left = '75vw';
+      designerSvg.style.top = '50vh';
+    }
+  });
+});
+
+const designerVisible = document.getElementById("designer-visible")
+observer3.observe(designerVisible);
+
+// DOM Camera 4
+const developerSpacer = document.getElementById('developer-spacer');
+
+const DOMDeveloperSpacerScene = new Director.Scene()
+
+DOMDeveloperSpacerScene.fromTo(designerSvg, {opacity: [1, 0]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+DOMDeveloperSpacerScene.fromTo(lineElement, {scaleY: [1, 0.25]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+const DOMCamera4 = new Director.Camera(developerSpacer, DOMDeveloperSpacerScene, {offset: 1000})
+// fade background to black
+// change I am a text to white
+
+var update4 = () => {
+	DOMDeveloperSpacerScene.setProgress(DOMCamera4.progress)
+	window.requestAnimationFrame(update4)
+}
+window.requestAnimationFrame(update4)
 
 
 // when its at 50%

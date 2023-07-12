@@ -28,7 +28,7 @@ nav {
     min-height: 100vh;
 }
 #i-am {
-    min-height: 200vh;
+    min-height: 100vh;
     display: grid;
     align-content: center;
 
@@ -52,4 +52,8 @@ nav {
     bottom: 0;
     left: 0;
     z-index: 2;
+}
+
+#designer-svg {
+    max-width: 20vw;
 }
