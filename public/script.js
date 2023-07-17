@@ -136,11 +136,12 @@ observer3.observe(designerVisible);
 
 // DOM Camera 4
 const developerSpacer = document.getElementById('developer-spacer');
-
+const blackBackground = document.querySelector('.black-background')
 const DOMDeveloperSpacerScene = new Director.Scene()
 
 DOMDeveloperSpacerScene.fromTo(designerSvg, {opacity: [1, 0]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
 DOMDeveloperSpacerScene.fromTo(lineElement, {scaleY: [1, 0.25]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+DOMDeveloperSpacerScene.fromTo(blackBackground, {scale: [0, 1], opacity: [0, 1]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
 const DOMCamera4 = new Director.Camera(developerSpacer, DOMDeveloperSpacerScene, {offset: 1000})
 // fade background to black
 // change I am a text to white
@@ -151,10 +152,29 @@ var update4 = () => {
 }
 window.requestAnimationFrame(update4)
 
+// when scrolled past a certain point, change black background is fixed
+const observer4 = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // If the "designer" div is intersecting with the viewport, change the display property of the "I am" div to "fixed"
+      blackBackground.style.position = 'fixed';
+      blackBackground.style.top = '0vh';
+    } else {
+      // If the "designer" div is not intersecting with the viewport, revert the display property of the "I am" div to its default value
+      blackBackground.style.position = 'absolute';
+    }
+  });
+});
 
-// when its at 50%
-    // other text slowly fade out
-    // when entire thing is visible add flying black thing
+const blackBgVisible = document.getElementById("black-bg-visible")
+observer4.observe(blackBgVisible);
+
+
+// text changes to white
+// line starts blinking
+// type <developer>
+
+// add scroll down element for intro
 
 //https://www.youtube.com/watch?v=cBOW8Nbb2PQ
 // writing effect for designer part

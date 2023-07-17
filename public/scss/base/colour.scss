@@ -1,6 +1,7 @@
 $blue: #4c9eed;
 $light-blue: #87cffb;
 $grey: #EFEFEF;
+$black: #242424;
 
 body {
     background-color: $grey;
@@ -12,4 +13,8 @@ body {
 
 #line {
     background-color: $blue;
+}
+
+.black-background {
+    background-color: $black;
 }
