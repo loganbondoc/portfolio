@@ -2,11 +2,19 @@
     display: flex;
 }
 
-#line {
+.blue-line {
     width: 5px;
     height: 75vh;
+    z-index: 6;
 }
 
 #typed-text {
     max-height: 48px;
+}
+
+#center-line-container {
+    display: none;
+    position: fixed;
+    left: 50vw;
+    top: 12.5vh;
 }

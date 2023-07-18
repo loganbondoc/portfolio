@@ -12,14 +12,14 @@ body {
 }
 
 .white-txt {
-    color: white;
+    color: $grey;
 }
 
 .black-txt {
     color: black;
 }
 
-#line {
+.blue-line {
     background-color: $blue;
 }
 

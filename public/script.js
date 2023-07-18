@@ -6,7 +6,7 @@ console.log("hello!");
 // Setup for line
 
 let DOMTranslateX = 0
-const lineElement = document.querySelector('#line-container')
+const lineElement = document.querySelector('#line')
 const lineContainer = document.querySelector('#i-am-spacer')
 
 const calculateTranslateXOffset = () => {
@@ -40,18 +40,40 @@ var update = () => {
 window.requestAnimationFrame(update)
 
 
+// // when scrolled past a certain point, change line position to be fixed
+const line = document.getElementById('line')
+// const observer = new IntersectionObserver(entries => {
+//     entries.forEach(entry => {
+//       if (entry.isIntersecting) {
+//         // If the "designer" div is intersecting with the viewport, change the display property of the "line" div to "fixed"
+//         line.style.position = 'fixed';
+// 		    line.style.top = '12.5vh';
+//       } else {
+//         // If the "designer" div is not intersecting with the viewport, revert the display property of the "line" div to its default value
+//         line.style.position = 'absolute';
+// 		    line.style.top = '80vh';
+//       }
+//     });
+//   });
+
 // when scrolled past a certain point, change line position to be fixed
-const line = document.getElementById('line-container')
+
+const centerLine = document.getElementById('center-line');
+const centerLineContainer = document.getElementById('center-line-container');
+
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // If the "designer" div is intersecting with the viewport, change the display property of the "line" div to "fixed"
-        line.style.position = 'fixed';
-		    line.style.top = '12.5vh';
+        // making line replacement
+        
+        line.style.display = 'none';
+        centerLineContainer.style.display = 'block';
       } else {
         // If the "designer" div is not intersecting with the viewport, revert the display property of the "line" div to its default value
+        line.style.display = 'block';
         line.style.position = 'absolute';
 		    line.style.top = '80vh';
+        centerLineContainer.style.display = 'none';
       }
     });
   });
@@ -136,11 +158,12 @@ observer3.observe(designerVisible);
 
 // DOM Camera 4
 const developerSpacer = document.getElementById('developer-spacer');
-const blackBackground = document.querySelector('.black-background')
+const blackBackground = document.querySelector('.black-background');
+// const fixedCenterLine = document.getElementById('center-line');
 const DOMDeveloperSpacerScene = new Director.Scene()
 
 DOMDeveloperSpacerScene.fromTo(designerSvg, {opacity: [1, 0]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
-DOMDeveloperSpacerScene.fromTo(DOMCameraLine, {scaleY: [1, 0.25]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+DOMDeveloperSpacerScene.fromTo(centerLine, {scaleY: [1, 0.25]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
 DOMDeveloperSpacerScene.fromTo(blackBackground, {scale: [0, 1], opacity: [0, 1]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
 const DOMCamera4 = new Director.Camera(developerSpacer, DOMDeveloperSpacerScene, {offset: 1000})
 // fade background to black
@@ -169,38 +192,57 @@ const observer4 = new IntersectionObserver(entries => {
 const blackBgVisible = document.getElementById("black-bg-visible")
 observer4.observe(blackBgVisible);
 
-function typeWord(word, target) {
-  if (typeof word !== 'string') {
-    console.error('The "word" parameter must be a string.');
-    return;
-  }
+// function typeWord(word, target) {
+//   if (typeof word !== 'string') {
+//     console.error('The "word" parameter must be a string.');
+//     return;
+//   }
 
-  let wordArray = word.split("");
-  var displayText = "";
+//   let wordArray = word.split("");
+//   var displayText = "";
 
-  for (let i = 0; i < wordArray.length; i++) {
-    displayText = displayText + wordArray[i];
-    target.innerHTML = displayText;
-    setTimeout(typeWord, 2000);  // Pass the correct arguments to setTimeout
-  }
-}
+//   for (let i = 0; i < wordArray.length; i++) {
+//     displayText = displayText + wordArray[i];
+//     target.innerHTML = displayText;
+//     setTimeout(typeWord, 2000);  // Pass the correct arguments to setTimeout
+//   }
+// }
 
 // when scrolled past a certain point, change black background is fixed
 const typedText = document.getElementById("typed-text");
+const typeCursor = document.getElementById("type-cursor");
 const observer5 = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       Director.addClass(iAmText, {class: "white-txt"})
-      Director.addClass(DOMCameraLine, {class: "blinking"})
-      typeWord("developer", typedText);
+      // add a new line that is the same dimensions and is in the middle of screen
+      Director.addClass(centerLine, {class: "blinking"})
+      // typeWord("developer", typedText);
+
+      
+
+      // let linePos = line.getBoundingClientRect();
+      // typeCursor.style.position = 'absolute';
+      // typeCursor.style.left = line.offsetLeft/2 + 'px';
+
       // make text colour white
       // make line blink
       // wait a lil bit then start adding span stuff
+
+      // const lineComputedStyle = getComputedStyle(line);
+      // const lineTransformMatrix = lineComputedStyle.transform;
+
+      // // Extract the tx value from the original element's transformation matrix
+      // const matrixValues = lineTransformMatrix.match(/matrix(?:3d)?\(([^)]+)\)/)[1].split(', ');
+      // const tx = parseFloat(matrixValues[12] || matrixValues[4]);
+
+      // // Apply the translation transformation to the target element
+      // typeCursor.style.transform = `translateX(${tx}px)`;
       
     } else {
       Director.removeClass(iAmText, {class: "white-txt"})
-      Director.removeClass(DOMCameraLine, {class: "blinking"})
-      typedText.innerHTML = "";
+      Director.removeClass(centerLine, {class: "blinking"})
+      // typedText.innerHTML = "";
       // text colour is black
       // line is not blinking
       // delete whatever is in the span
