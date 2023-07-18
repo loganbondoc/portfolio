@@ -6,7 +6,7 @@ console.log("hello!");
 // Setup for line
 
 let DOMTranslateX = 0
-const lineElement = document.querySelector('#line')
+const lineElement = document.querySelector('#line-container')
 const lineContainer = document.querySelector('#i-am-spacer')
 
 const calculateTranslateXOffset = () => {
@@ -41,7 +41,7 @@ window.requestAnimationFrame(update)
 
 
 // when scrolled past a certain point, change line position to be fixed
-const line = document.getElementById('line')
+const line = document.getElementById('line-container')
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -140,7 +140,7 @@ const blackBackground = document.querySelector('.black-background')
 const DOMDeveloperSpacerScene = new Director.Scene()
 
 DOMDeveloperSpacerScene.fromTo(designerSvg, {opacity: [1, 0]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
-DOMDeveloperSpacerScene.fromTo(lineElement, {scaleY: [1, 0.25]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+DOMDeveloperSpacerScene.fromTo(DOMCameraLine, {scaleY: [1, 0.25]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
 DOMDeveloperSpacerScene.fromTo(blackBackground, {scale: [0, 1], opacity: [0, 1]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
 const DOMCamera4 = new Director.Camera(developerSpacer, DOMDeveloperSpacerScene, {offset: 1000})
 // fade background to black
@@ -169,6 +169,48 @@ const observer4 = new IntersectionObserver(entries => {
 const blackBgVisible = document.getElementById("black-bg-visible")
 observer4.observe(blackBgVisible);
 
+function typeWord(word, target) {
+  if (typeof word !== 'string') {
+    console.error('The "word" parameter must be a string.');
+    return;
+  }
+
+  let wordArray = word.split("");
+  var displayText = "";
+
+  for (let i = 0; i < wordArray.length; i++) {
+    displayText = displayText + wordArray[i];
+    target.innerHTML = displayText;
+    setTimeout(typeWord, 2000);  // Pass the correct arguments to setTimeout
+  }
+}
+
+// when scrolled past a certain point, change black background is fixed
+const typedText = document.getElementById("typed-text");
+const observer5 = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      Director.addClass(iAmText, {class: "white-txt"})
+      Director.addClass(DOMCameraLine, {class: "blinking"})
+      typeWord("developer", typedText);
+      // make text colour white
+      // make line blink
+      // wait a lil bit then start adding span stuff
+      
+    } else {
+      Director.removeClass(iAmText, {class: "white-txt"})
+      Director.removeClass(DOMCameraLine, {class: "blinking"})
+      typedText.innerHTML = "";
+      // text colour is black
+      // line is not blinking
+      // delete whatever is in the span
+      
+    }
+  });
+});
+
+const developerTypeSection = document.getElementById("developer-type");
+observer5.observe(developerTypeSection);
 
 // text changes to white
 // line starts blinking

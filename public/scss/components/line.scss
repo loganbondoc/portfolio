@@ -1,4 +1,12 @@
+#line-container {
+    display: flex;
+}
+
 #line {
     width: 5px;
     height: 75vh;
+}
+
+#typed-text {
+    max-height: 48px;
 }
