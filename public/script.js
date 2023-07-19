@@ -65,9 +65,8 @@ const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         // making line replacement
-        
         line.style.display = 'none';
-        centerLineContainer.style.display = 'block';
+        centerLineContainer.style.display = 'flex';
       } else {
         // If the "designer" div is not intersecting with the viewport, revert the display property of the "line" div to its default value
         line.style.display = 'block';
@@ -105,12 +104,12 @@ const observer2 = new IntersectionObserver(entries => {
       if (entry.isIntersecting) {
         // If the "designer" div is intersecting with the viewport, change the display property of the "I am" div to "fixed"
         iAmText.style.position = 'fixed';
-        iAmText.style.left = '30vw';
-		    iAmText.style.top = '50vh';
+        iAmText.style.left = '35vw';
+		    iAmText.style.top = '47.5vh';
       } else {
         // If the "designer" div is not intersecting with the viewport, revert the display property of the "I am" div to its default value
         iAmText.style.position = 'absolute';
-        iAmText.style.left = '30vw';
+        iAmText.style.left = '35vw';
         iAmText.style.top = '10vh';
       }
     });
@@ -192,57 +191,42 @@ const observer4 = new IntersectionObserver(entries => {
 const blackBgVisible = document.getElementById("black-bg-visible")
 observer4.observe(blackBgVisible);
 
-// function typeWord(word, target) {
-//   if (typeof word !== 'string') {
-//     console.error('The "word" parameter must be a string.');
-//     return;
-//   }
+function typeWord(word, target) {
+  if (typeof word !== 'string') {
+    console.error('The "word" parameter must be a string.');
+    return;
+  }
 
-//   let wordArray = word.split("");
-//   var displayText = "";
+  let wordArray = word.split("");
+  var displayText = "";
 
-//   for (let i = 0; i < wordArray.length; i++) {
-//     displayText = displayText + wordArray[i];
-//     target.innerHTML = displayText;
-//     setTimeout(typeWord, 2000);  // Pass the correct arguments to setTimeout
-//   }
-// }
+  for (let i = 0; i < wordArray.length; i++) {
+    setTimeout(() => { // Use an anonymous function or arrow function to preserve the current value of 'i'
+      displayText = displayText + wordArray[i];
+      target.innerHTML = displayText;
+    }, 200 * i); // Multiply the delay by 'i' to increment the delay for each character
+  }
+}
 
 // when scrolled past a certain point, change black background is fixed
 const typedText = document.getElementById("typed-text");
-const typeCursor = document.getElementById("type-cursor");
 const observer5 = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       Director.addClass(iAmText, {class: "white-txt"})
       // add a new line that is the same dimensions and is in the middle of screen
       Director.addClass(centerLine, {class: "blinking"})
-      // typeWord("developer", typedText);
+      typeWord('developer', typedText);
 
-      
-
-      // let linePos = line.getBoundingClientRect();
-      // typeCursor.style.position = 'absolute';
-      // typeCursor.style.left = line.offsetLeft/2 + 'px';
 
       // make text colour white
       // make line blink
       // wait a lil bit then start adding span stuff
-
-      // const lineComputedStyle = getComputedStyle(line);
-      // const lineTransformMatrix = lineComputedStyle.transform;
-
-      // // Extract the tx value from the original element's transformation matrix
-      // const matrixValues = lineTransformMatrix.match(/matrix(?:3d)?\(([^)]+)\)/)[1].split(', ');
-      // const tx = parseFloat(matrixValues[12] || matrixValues[4]);
-
-      // // Apply the translation transformation to the target element
-      // typeCursor.style.transform = `translateX(${tx}px)`;
       
     } else {
       Director.removeClass(iAmText, {class: "white-txt"})
       Director.removeClass(centerLine, {class: "blinking"})
-      // typedText.innerHTML = "";
+      typedText.innerHTML = "";
       // text colour is black
       // line is not blinking
       // delete whatever is in the span
