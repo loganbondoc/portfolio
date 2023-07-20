@@ -1,3 +1,9 @@
+#sketch-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 #animation-container {
     min-width: 100vw;
 }
@@ -23,6 +29,11 @@ nav {
     align-content: end;
 }
 
+#scroll-prompt {
+    position: absolute;
+    left: 30vw;
+    top: 85vh;
+}
 
 #i-am-spacer {
     min-height: 100vh;
@@ -44,11 +55,9 @@ nav {
             place-items: center;
         }
 
-        // .blue-line {
-        //     position: fixed;
-        //     left: 50vw;
-        //     top: 50vh;
-        // }
+        #i-am-text {
+            max-height: 48px;
+        }
     }
 }
 

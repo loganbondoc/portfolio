@@ -238,9 +238,25 @@ const observer5 = new IntersectionObserver(entries => {
 const developerTypeSection = document.getElementById("developer-type");
 observer5.observe(developerTypeSection);
 
-// text changes to white
-// line starts blinking
-// type <developer>
+// DOM Camera 5
+const blackBgExit = document.getElementById('black-bg-exit');
+const blackBgExitScene = new Director.Scene()
+
+// blackBgExitScene.fromTo(designerSvg, {opacity: [1, 0]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+blackBgExitScene.fromTo(centerLine, {opacity: [1, 0]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+blackBgExitScene.fromTo(blackBackground, {opacity: [1, 0]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+blackBgExitScene.fromTo(iAmText, {opacity: [1, 0]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+blackBgExitScene.fromTo(typedText, {opacity: [1, 0]}, { duration: 1, ease: 'easeInCirc' }, 0.25)
+const DOMCamera5 = new Director.Camera(blackBgExit, blackBgExitScene, {offset: 1000})
+
+var update5 = () => {
+	blackBgExitScene.setProgress(DOMCamera5.progress)
+	window.requestAnimationFrame(update5)
+}
+window.requestAnimationFrame(update5)
+
+// fade background to black
+// change I am a text to white
 
 // add scroll down element for intro
 

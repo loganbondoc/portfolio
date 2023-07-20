@@ -1,20 +1,27 @@
 // animation triggered on open
 
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(100%); filter: blur(5px);}
+    0% { opacity: 0; transform: translateY(200%); filter: blur(5px);}
     100% { opacity: 1; transform: translateY(0%); filter: blur(0);}
 }
 
 #hello {
-    .blue-txt, h1 {
+    .blue-txt, h1, h4 {
         animation: fadeIn 1s;
     }
 
     h1 {
         animation-delay: 100ms;
     }
+
+    h4 {
+        animation-delay: 1000ms;
+    }
 }
 
+// #scroll-prompt {
+//     opacity: 0;
+// }
 // #line {
 //     animation: fadeIn 1s;
 //     animation-delay: 200ms;
