@@ -141,12 +141,12 @@ const observer3 = new IntersectionObserver(entries => {
     if (entry.isIntersecting) {
       // If the "designer" div is intersecting with the viewport, change the display property of the "I am" div to "fixed"
       designerSvg.style.position = 'fixed';
-      designerSvg.style.left = '75vw';
+      designerSvg.style.left = '65vw';
       designerSvg.style.top = '50vh';
     } else {
       // If the "designer" div is not intersecting with the viewport, revert the display property of the "I am" div to its default value
       designerSvg.style.position = 'absolute';
-      designerSvg.style.left = '75vw';
+      designerSvg.style.left = '65vw';
       designerSvg.style.top = '50vh';
     }
   });
