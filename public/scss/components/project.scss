@@ -1,0 +1,19 @@
+.project-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 5vw;
+}
+
+.persona-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    h4{
+        margin-left: 2vw;
+    }
+}
