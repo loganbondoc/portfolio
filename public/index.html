@@ -3,101 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memento</title>
+    <title>Logan Bondoc</title>
     <link rel="icon" type="image/x-icon" href="images/lb-logo-whitebg.png">
     <link rel="stylesheet" href="scss/main.scss"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"></script> -->
 </head>
 <body>
-    <header>
+    <section id = 'sketch-container'></section>
+    <section id = "welcome" class = "page-content">
         <nav>
             <svg id = "logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 111.21 165.27"><defs><style>.cls-1{font-size:106.37px;font-family:Comfortaa-Medium, Comfortaa;font-weight:500;}</style></defs><g id="Text"><text class="cls-1" transform="translate(0 94.73)">L</text><text class="cls-1" transform="translate(36.32 134.53)">B</text></g></svg>
             <ul class = "nav-list">
                 <div id = "nav-line"></div>
                 <li><a href = "#works"><h3>Works</h3></a></li>
-                <li><a href = "pdfs/logan_bondoc_resume_2023.pdf"><h3>Resume</h3></a></li>
+                <li><a href = ""><h3>Resume</h3></a></li>
                 <li><a href = "mailto: loganbondoc@gmail.com"><h3>Contact</h3></a></li>
             </ul>
         </nav>
-    </header>
-    <section class = "project-section">
-        <img src = "https://source.unsplash.com/800x200">
-    </section>
-    <section class = "project-section">
-        <div>
-            <h1>Memento</h1>
-            <h3>Addressing Post-Party Effects in Young people</h3>
-        </div>
-        <div>
-            <h2>Role</h2>
-            <h4>This investigation</h4>
-        </div>
-        <span>
-            <div>
-                <h2>Project Duration</h2>
-                <h4>13 Weeks</h4>
-            </div>
-            <div>
-                <h2>Sector</h2>
-                <h4>Lifestyle, Leisure & Entertainment</h4>
-            </div>
-            <div class = "nav-line"></div>
-        </span>
-    </section>
-    <section class = "project-section">
-        <h2>Research Approach</h2>
-        <h4>Our design process for Memento, was based upon the double diamond method. Through this,  we implemented phases of:
-            Discovering more about the chosen topic
-            Defining the key issues that needed to be addressed
-            Developing and ideating a key solution
-            Delivering the solution to our target demographic</h4>
-        <h4>Discover more about the topic
-            Employed the use of Semi-Structured Interviews, Online Ethnography
-            Utilised Affinity mapping to synthesise our data</h4>
-    </section>
-    <section class = "project-section">
-        <div class = "centered-image-container">
-            <img class = "double-diamond" src = "images/memento/double-diamond.png">
-        </div>
-        <h4>Discover more about the topic
-            Employed the use of Semi-Structured Interviews, Online Ethnography
-            Utilised Affinity mapping to synthesise our data</h4>
-    </section>
-    <section class = "project-section">
-        <h2>Key Findings</h2>
-        <h2>"Young people often experience post-event effects of nostalgia, emptiness and social fatigue. These feelings are exacerbated by common tendencies to suppress emotions or to be productive in the aftermath of these events.
-            Despite the abundance of post-event recovery methods, there is still an existing struggle to debrief and preserve memories from events."</h2>
-    </section>
-    <section class = "project-section">
-        <h2>Our synthesis of the data</h2>
-        <h4>Developed personas based on groupings in a persona data sheet</h4>
-    </section>
-    <section class = "project-section">
-        <div class = "persona-container">
-            <img src = "https://source.unsplash.com/250x250">
-            <h4>Mary is known as the life of the party, thriving in social settings.
-                Enjoys parties with laughter, lights, and music but experiences self-doubt the next morning.
-                Her anxiety eases after discussing her experiences during a coffee chat.
-                Mary's extroverted and reflective personality drives her dependence on others for post-event recovery.</h4>
+        <div id = "hello">
+            <h1 class = "blue-txt hidden">Hello!</h1>
+            <h1 class = 'hidden'>My name is Logan Bondoc</h1>
+            <h4 id = "scroll-prompt" class = "blue-text">Scroll down!</h4>
         </div>
     </section>
-    <section class = "project-section">
-        <h4>Created Storyboards</h4>
-        <img src = "https://source.unsplash.com/200x200">
+    <section id = "i-am-spacer" class = "page-content">
+        <div id="line" class="blue-line"></div>
     </section>
-    <section class = "project-section">
-        <h2>Concept Development</h2>
-        <h3>Ideation</h3>
-        <h3>Idea Refinement</h3>
+    <section id = "works" class = "page-content">
+        <h1>Current Works</h1>
+        <div id = "nav-line"></div>
+        <section id = "current-works"></section>
     </section>
-    <section class = "project-section">
-        <h2>Wireframes</h2>
-        <img src = "https://source.unsplash.com/200x200">
-    </section>
-    <section class = "project-section">
-        <h2>Hi-Fi Prototypes</h2>
-        <img src = "https://source.unsplash.com/200x200">
-    </section>
+    <script src = 'script.js' type="module"></script>
+    <!-- <script src="sketch.js" id = "p5js-sketch"></script> -->
 </body>
+</html>
